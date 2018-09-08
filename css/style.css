@@ -5,6 +5,14 @@
   margin: 0;
 }
 
+/*
+Fluid Typography
+Source: https://css-tricks.com/snippets/css/fluid-typography/
+*/
+html {
+  font-size: calc(12px + (18 - 12) * ((100vw - 360px) / (1200 - 360)));
+}
+
 body {
   font-family: Lato, 'Roboto Condensed', Helvetica, Arial, sans-serif;
   color: #2d3c49;
@@ -14,7 +22,7 @@ body {
 .header-grid {
   border-bottom: 2px solid #7d97ad;
   display: grid;
-  grid-template-columns: minmax(auto, 64px) 1fr max-content;
+  grid-template-columns: minmax(48px, 64px) 1fr max-content;
   grid-template-areas:
                       "logo . header"
                       "logo . subheader";
@@ -22,8 +30,9 @@ body {
 
 .logo {
   grid-area: logo;
+  align-self: center;
   width: 100%;
-  margin: 1rem;
+  padding: 0.8rem;
 }
 
 .page-header {
@@ -32,7 +41,7 @@ body {
   margin: 1rem 1rem 0;
   text-transform: uppercase;
   font-weight: 300;
-  font-size: 2.7rem;
+  font-size: 2.3rem;
 }
 
 .page-subheader {
@@ -44,7 +53,7 @@ body {
   font-size: 1.2rem;
 }
 
-/* Main Part */
+/* Main Part of the Page*/
 .main-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -53,7 +62,7 @@ body {
 
 .banner {
   grid-column: span 3;
-  margin: 1.5rem 0 0 0;
+  margin: 1.5rem 0 0;
   width: 100%;
 }
 
@@ -81,13 +90,14 @@ body {
 }
 
 .pic-source {
-  margin: 0 10px;
+  margin: 0 10px 20px;
+  word-break: break-all;
   text-align: center;
   font-weight: lighter;
   font-size: 0.9rem;
 }
 
-/* Footer */
+/* Page Footer */
 footer {
   margin: 2rem auto;
   text-align: center;
@@ -95,4 +105,30 @@ footer {
 
 footer strong {
   color: #ee7622;
+}
+
+/* Make Site Responsive */
+@media (max-width: 600px) {
+  .header-grid {
+    grid-template-columns: minmax(32px, 48px) 1fr max-content;
+  }
+
+  .main-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .banner {
+    grid-column: 1;
+  }
+
+  .works-header {
+    grid-column: 1;
+  }
+}
+
+@media (min-width: 1200px) {
+  body {
+    width: 1200px;
+    margin: 0 auto;
+  }
 }
